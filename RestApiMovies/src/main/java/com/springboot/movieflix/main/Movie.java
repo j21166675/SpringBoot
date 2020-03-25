@@ -1,14 +1,14 @@
 package com.springboot.movieflix.main;
 
-public class MovieList {
+public class Movie {
     public String movieName;
     public String movieLanguage;
     public String description;
 
-    MovieList(){
+    Movie(){
 
     }
-    MovieList(String movieName, String movieLanguage, String description){
+    Movie(String movieName, String movieLanguage, String description){
         this.movieName = movieName;
         this.movieLanguage = movieLanguage;
         this.description = description;

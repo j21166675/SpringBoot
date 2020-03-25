@@ -1,23 +1,25 @@
 package com.springboot.movieflix.main;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
-
-import java.util.ArrayList;
 
 @RestController
 public class ManageMoviesList {
+
+    @Autowired
+    private MoviesListService moviesListService;
+
     @RequestMapping("/movielist")
-    public List<MovieList> retMovieList() throws Exception{
+    public List<Movie> retMovieList() throws Exception{
+        return moviesListService.retMovieList();
+    }
 
-        return Arrays.asList(
-                new MovieList("Good News", "Hindi", "Comedy"),
-                new MovieList("Invisible Guest", "Tamil", "Detective"),
-                new MovieList("Fantastic 5", "English", "scifi"),
-                new MovieList("Master", "Tamil", "Comedy"));
-
+    @RequestMapping("/movielist/{movieName}")
+    public Movie retMovie(@PathVariable String movieName) throws Exception{
+        return moviesListService.retMovie(movieName);
     }
 }
