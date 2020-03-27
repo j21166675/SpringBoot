@@ -27,4 +27,10 @@ public class MoviesListService {
      movieRepository.save(movie);
       return true;
     }
+
+    public  boolean updateMovie(Movie movie, String name){
+       movieRepository.save(movie);
+       return true;
+    }
+
 }

@@ -28,4 +28,11 @@ public class ManageMoviesController {
         return "Not Done";
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/movielist/{name}")
+    public String updateMovie(@RequestBody Movie movie, @PathVariable String name){
+        boolean isAdded = moviesListService.updateMovie(movie, name);
+        if(isAdded) return "Done";
+        return "Not Done";
+    }
+
 }
