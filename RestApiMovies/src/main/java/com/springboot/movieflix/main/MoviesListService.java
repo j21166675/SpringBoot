@@ -1,5 +1,6 @@
 package com.springboot.movieflix.main;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -8,22 +9,22 @@ import java.util.List;
 
 @Service
 public class MoviesListService {
-    List<Movie> list = new ArrayList<>(Arrays.asList(
-            new Movie("Good News", "Hindi", "Comedy"),
-            new Movie("Invisible Guest", "Tamil", "Detective"),
-            new Movie("Fantastic 5", "English", "scifi"),
-            new Movie("Master", "Tamil", "Comedy")));
+    @Autowired
+    public MovieRepository movieRepository;
 
     public List<Movie> retMovieList() {
-        return list;
+    List<Movie> list = new ArrayList<>();
+     movieRepository.findAll().forEach(list::add);
+    return list;
     }
 
     public Movie retMovie(String movieName) {
-        return list.stream().filter(d -> d.getMovieName().equals(movieName)).findAny().get();
+        //return list.stream().filter(d -> d.getMovieName().equals(movieName)).findAny().get();
+        return movieRepository.findById(movieName).get();  // Using Spring JPA
     }
 
     public boolean addMovie(Movie movie) {
-      list.add(movie);
+     movieRepository.save(movie);
       return true;
     }
 }

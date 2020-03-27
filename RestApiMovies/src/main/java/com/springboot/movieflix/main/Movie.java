@@ -1,6 +1,11 @@
 package com.springboot.movieflix.main;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Movie {
+    @Id
     public String movieName;
     public String movieLanguage;
     public String description;
